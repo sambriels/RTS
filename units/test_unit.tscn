@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuwpufs0b4sp"]
+
+[ext_resource type="Texture2D" uid="uid://d1om3bxcdc3qu" path="res://assets/MiniWorldSprites/Characters/Workers/CyanWorker/FarmerCyan.png" id="1_7283n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsbyb"]
+size = Vector2(9, 12)
+
+[node name="test_unit" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_nsbyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7283n")
+region_enabled = true
+region_rect = Rect2(0, 0, 17, 16)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjhw1d1rxrg4t"]
+
+[ext_resource type="Script" path="res://utils/FPS.gd" id="1_nl8x8"]
+
+[node name="FPS" type="Label"]
+theme_type_variation = &"HeaderLarge"
+script = ExtResource("1_nl8x8")
