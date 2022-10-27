@@ -1,7 +1,6 @@
 extends Node2D
 
 var dragging: bool = false # Are we currently dragging?
-var selected = [] # Array of selected units, should be moved somewhere else later
 var drag_start = Vector2.ZERO # Location where drag began
 var select_rect = RectangleShape2D.new() # Collision shape for drag box
 

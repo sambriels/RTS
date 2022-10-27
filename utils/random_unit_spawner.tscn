@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://clladl1p2ea3j"]
+
+[sub_resource type="GDScript" id="GDScript_u52a3"]
+script/source = "extends Node2D
+
+@export_range(1, 100, 1) var number_of_units_to_spawn: int
+
+const TestUnit = preload(\"res://units/test_unit.tscn\")
+var rng = RandomNumberGenerator.new()
+var units: Array = []
+
+func _get_random_location() -> Vector2:
+	return Vector2(rng.randf_range(10.0, 400.0),rng.randf_range(10.0, 400.0))
+	
+func _process(_delta: float) -> void:
+	$CanvasLayer/Label.set_text(\"Units spawned: %d\" % units.size())
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"left_click\"):
+		# consume input on the viewport so it does not propagate
+		get_tree().get_root().set_input_as_handled()
+		
+		for i in range(number_of_units_to_spawn):
+			var instance: RTSTestUnit = TestUnit.instantiate().init(_get_random_location())
+			instance.destination_reached.connect(_on_test_unit_destination_reached)
+			units.push_back(instance)
+			add_child(instance)
+			instance.set_target(_get_random_location())
+
+func _on_test_unit_destination_reached(unit: RTSTestUnit) -> void:
+	unit.set_target(_get_random_location())
+"
+
+[node name="RandomUnitSpawner" type="Node2D"]
+script = SubResource("GDScript_u52a3")
+number_of_units_to_spawn = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+horizontal_alignment = 2
