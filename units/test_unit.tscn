@@ -24,7 +24,7 @@ region_rect = Rect2(0, 0, 17, 16)
 avoidance_enabled = true
 
 [node name="NavigationTarget" type="Node2D" parent="."]
-visible = false
+top_level = true
 
 [node name="Sprite2D" type="Sprite2D" parent="NavigationTarget"]
 texture = ExtResource("3_nks0i")

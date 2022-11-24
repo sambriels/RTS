@@ -13,6 +13,7 @@ signal destination_reached(unit: RTSTestUnit)
 
 func set_target(target: Vector2) -> void:
 	_agent.set_target_location(target)
+	$NavigationTarget.global_position = target
 
 func init(_position: Vector2) -> RTSTestUnit:
 	self.global_position = _position
